@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import FormOchSkicka from "../islands/FormSkicka.tsx";
-import BildOchTitel from "../islands/NfBild.tsx";
+import BildOchTitel from "../components/NfBild.tsx";
 
 export default function Home() {
   return (
