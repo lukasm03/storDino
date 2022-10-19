@@ -1,6 +1,11 @@
 import { useState } from "preact/hooks";
 import { createClient } from "https://deno.land/x/supabase@1.3.1/mod.ts";
-
+import { JSX } from "preact/jsx-runtime";
+const urls = "https://fwikjqgmaisqizeqbaji.supabase.co";
+const keys =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3aWtqcWdtYWlzcWl6ZXFiYWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjYwMjkxMjIsImV4cCI6MTk4MTYwNTEyMn0.v0LCLpTObviIdT8vEMfxfTOjQeZOaaaC7MMXdR7ib_o";
+const imageURL =
+  "https://fwikjqgmaisqizeqbaji.supabase.co/storage/v1/object/public/";
 export default function FormOchSkicka() {
   const [ValdKategori, setValdKategori] = useState("");
   const [Vara, setVara] = useState("");
@@ -15,9 +20,39 @@ export default function FormOchSkicka() {
     if (e.target instanceof HTMLInputElement) {
       const avatarFile = e.target.files![0];
       setBild(avatarFile);
-      console.log(Bild);
     }
-    //e.defaultvalue är base64 iamge
+  }
+
+  async function onSubmittion(e: JSX.TargetedEvent<HTMLFormElement,Event>|undefined) {
+    e!.preventDefault();
+    const supabase = createClient(urls, keys);
+    const { data } = await supabase.storage
+      .from("bildavkvitton")
+      .upload(`public/${Bild!.name}`, Bild!, {
+        upsert: true,
+      });
+    const { error } = await supabase
+      .from("kvitton")
+      .insert({
+        Vara: Vara,
+        Pris: Pris,
+        Kategori: ValdKategori,
+        Datum: Datum,
+        Bild: `${imageURL}${data!.Key}`,
+        Swish: Swish,
+        Typavköp: Typavköp,
+        Fixad: false
+      });
+    setSkickat("Kvitto inskickat!");
+    setBild("" as unknown as File);
+    setDatum("");
+    setPris("");
+    setSwish("");
+    setTypavköp("");
+    setValdKategori("");
+    setVara("");
+    await new Promise((r) => setTimeout(r, 5000));
+    setSkickat("");
   }
 
   return (
@@ -51,6 +86,7 @@ export default function FormOchSkicka() {
           maxWidth: "62vw",
           alignSelf: "center",
         }}
+        onSubmit={(e)=>onSubmittion(e)}
       >
         <label
           style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
@@ -64,7 +100,8 @@ export default function FormOchSkicka() {
           id="kategori"
           required
           value={ValdKategori}
-          onChange={kategori => setValdKategori((kategori.target as HTMLInputElement).value)}
+          onChange={(kategori) =>
+            setValdKategori((kategori.target as HTMLInputElement).value)}
         >
           <option value="Laborationer" name="Laborationer">
             Laborationer
@@ -90,7 +127,7 @@ export default function FormOchSkicka() {
           value={Vara}
           maxLength={16}
           required
-          onChange={vara => setVara((vara.target as HTMLInputElement).value)}
+          onChange={(vara) => setVara((vara.target as HTMLInputElement).value)}
         />
         <label
           style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
@@ -104,7 +141,7 @@ export default function FormOchSkicka() {
           placeholder="pris (skriv inte kr)"
           value={Pris}
           required
-          onChange={pris => setPris((pris.target as HTMLInputElement).value)}
+          onChange={(pris) => setPris((pris.target as HTMLInputElement).value)}
         />
         <label
           style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
@@ -118,7 +155,8 @@ export default function FormOchSkicka() {
           value={Datum}
           placeholder={Date.now().toString()}
           required
-          onChange={datum => setDatum((datum.target as HTMLInputElement).value)}
+          onChange={(datum) =>
+            setDatum((datum.target as HTMLInputElement).value)}
         />
         <label
           style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
@@ -132,6 +170,7 @@ export default function FormOchSkicka() {
           name="bild"
           style={{ alignSelf: "center" }}
           placeholder="bild på kvitto"
+          value={Bild as unknown as string}
           required
           onInput={onFileSelected}
         />
@@ -148,9 +187,11 @@ export default function FormOchSkicka() {
           placeholder={"swishnummer"}
           required
           pattern="[0-9]{3}-[0-9]{7}|[0-9]{10}"
-          onChange={swish => setSwish((swish.target as HTMLInputElement).value)}
+          onChange={(swish) =>
+            setSwish((swish.target as HTMLInputElement).value)}
         />
-        <button style={{marginTop: "2vh", width: "fit-content"}} onClick={()=>console.log(Swish,Pris,Datum,Vara, ValdKategori)}>
+        <button
+          style={{ marginTop: "2vh", width: "fit-content" }} type="submit">
           Skicka in kvitto
         </button>
         <p
