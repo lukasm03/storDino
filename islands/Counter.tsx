@@ -3,8 +3,7 @@ import FormOchSkicka from "../components/FormSkicka.tsx";
 
 export default function StartSida() {
   return (
-    <div
-     class="flex flex-col justify-center">
+    <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
         <BildOchTitel/>
         <FormOchSkicka/>
       </div>

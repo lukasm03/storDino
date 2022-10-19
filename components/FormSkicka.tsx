@@ -1,16 +1,6 @@
 import { useState } from "preact/hooks";
 import { createClient } from "https://deno.land/x/supabase@1.3.1/mod.ts";
 
-const typer = ["Avgift", "Intäkt"];
-const OlikaKategorier = [
-  "Laborationer",
-  "Medlemsavgifter",
-  "Kök&fester",
-  "Försäljning",
-  "NF-artiklar",
-  "Övrigt",
-];
-
 export default function FormOchSkicka() {
   const [ValdKategori, setValdKategori] = useState("");
   const [Vara, setVara] = useState("");
@@ -21,38 +11,61 @@ export default function FormOchSkicka() {
   const [Skickat, setSkickat] = useState("");
   const [Typavköp, setTypavköp] = useState("Avgift");
 
-   function onFileSelected(e: Event) {
+  function onFileSelected(e: Event) {
     if (e.target instanceof HTMLInputElement) {
       const avatarFile = e.target.files![0];
-      setBild(avatarFile)
-      console.log(Bild)
+      setBild(avatarFile);
+      console.log(Bild);
     }
     //e.defaultvalue är base64 iamge
   }
 
   return (
-    <div style={{width: "fit-content",justifySelf: "center",alignSelf: "center"}}>
-      <div style={{display: "flex",
-    justifyContent: "center"}}>
+    <div
+      style={{
+        width: "fit-content",
+        justifySelf: "center",
+        alignSelf: "center",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <button
           name="typavkop"
           value="avgift"
           onClick={() => setTypavköp("Avgift")}
         >
-          avgifter
+          Avgifter
         </button>
         <button
           name="typavkop"
           value="intäkt"
-          onClick={() => console.log(Bild)}
+          onClick={() => setTypavköp("Intäkt")}
         >
-          intäkt
+          Intäkter
         </button>
       </div>
-      <form style={{display: "flex",flexDirection: "column",maxWidth: "62vw",alignSelf: "center"}}>
-        <label style={{marginTop: "1vh",
-    marginBottom: "0.5vh"}} htmlFor="kategori">kategori på {Typavköp}:</label>
-        <select name="kategori" id="kategori" required>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          maxWidth: "62vw",
+          alignSelf: "center",
+        }}
+      >
+        <label
+          style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
+          htmlFor="kategori"
+        >
+          Kategori på {Typavköp}:
+        </label>
+        <select
+          style={{ minWidth: "120px", maxWidth: "6vw" }}
+          name="kategori"
+          id="kategori"
+          required
+          value={ValdKategori}
+          onChange={kategori => setValdKategori((kategori.target as HTMLInputElement).value)}
+        >
           <option value="Laborationer" name="Laborationer">
             Laborationer
           </option>
@@ -64,8 +77,12 @@ export default function FormOchSkicka() {
           <option value="NF-artiklar">NF-artiklar</option>
           <option value="Övrigt">Övrigt</option>
         </select>
-        <label style={{marginTop: "1vh",
-    marginBottom: "0.5vh"}} htmlFor="vara">vara:</label>
+        <label
+          style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
+          htmlFor="vara"
+        >
+          Vara:
+        </label>
         <input
           type="text"
           name="vara"
@@ -73,27 +90,42 @@ export default function FormOchSkicka() {
           value={Vara}
           maxLength={16}
           required
+          onChange={vara => setVara((vara.target as HTMLInputElement).value)}
         />
-        <label style={{marginTop: "1vh",
-    marginBottom: "0.5vh"}} htmlFor="pris">pris:</label>
+        <label
+          style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
+          htmlFor="pris"
+        >
+          Pris:
+        </label>
         <input
           type="number"
           name="pris"
           placeholder="pris (skriv inte kr)"
           value={Pris}
           required
+          onChange={pris => setPris((pris.target as HTMLInputElement).value)}
         />
-        <label style={{marginTop: "1vh",
-    marginBottom: "0.5vh"}} htmlFor="datum">datum:</label>
+        <label
+          style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
+          htmlFor="datum"
+        >
+          Datum:
+        </label>
         <input
           type="date"
           name="datum"
           value={Datum}
           placeholder={Date.now().toString()}
           required
+          onChange={datum => setDatum((datum.target as HTMLInputElement).value)}
         />
-        <label style={{marginTop: "1vh",
-    marginBottom: "0.5vh"}} htmlFor="bild">kvitto:</label>
+        <label
+          style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
+          htmlFor="bild"
+        >
+          Kvitto:
+        </label>
         <input
           type="file"
           accept="image/*"
@@ -103,8 +135,12 @@ export default function FormOchSkicka() {
           required
           onInput={onFileSelected}
         />
-        <label style={{marginTop: "1vh",
-    marginBottom: "0.5vh"}} htmlFor="vara">swish-nummer:</label>
+        <label
+          style={{ marginTop: "1vh", marginBottom: "0.5vh" }}
+          htmlFor="vara"
+        >
+          Swish-nummer:
+        </label>
         <input
           type="tel"
           name="swish"
@@ -112,9 +148,10 @@ export default function FormOchSkicka() {
           placeholder={"swishnummer"}
           required
           pattern="[0-9]{3}-[0-9]{7}|[0-9]{10}"
+          onChange={swish => setSwish((swish.target as HTMLInputElement).value)}
         />
-        <button type="submit">
-          skicka in kvitto
+        <button style={{marginTop: "2vh", width: "fit-content"}} onClick={()=>console.log(Swish,Pris,Datum,Vara, ValdKategori)}>
+          Skicka in kvitto
         </button>
         <p
           style={{
