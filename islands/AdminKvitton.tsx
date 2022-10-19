@@ -44,7 +44,7 @@ export default function VisaKvitton({ data }) {
           justifySelf: "center"
         }}>
           <h3 style={{ marginBottom: "0" }}>senaste kvitton:</h3>
-          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }) => {
+          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }: {id: Int8Array, Vara: string, Pris: Int8Array, Kategori: string, Datum: Date, Swish: Int8Array, Bild: string, Typavköp: string, Fixad: boolean}) => {
             if (Fixad === false) {
               return ettKvittoiListan(id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad)
             }
@@ -85,7 +85,7 @@ export default function VisaKvitton({ data }) {
           alignSelf: "center",
           justifySelf: "center"
         }}>                    <h3 style={{ marginBottom: "0" }}>senaste kvitton:</h3>
-          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }) => {
+          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }: {id: Int8Array, Vara: string, Pris: Int8Array, Kategori: string, Datum: Date, Swish: Int8Array, Bild: string, Typavköp: string, Fixad: boolean}) => {
             if (Typavköp === "Intäkt") {
               return (
                 ettKvittoiListan(id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad)
@@ -128,7 +128,7 @@ export default function VisaKvitton({ data }) {
           alignSelf: "center",
           justifySelf: "center"
         }}>                    <h3 style={{ marginBottom: "0" }}>senaste kvitton:</h3>
-          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }) => {
+          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }: {id: Int8Array, Vara: string, Pris: Int8Array, Kategori: string, Datum: Date, Swish: Int8Array, Bild: string, Typavköp: string, Fixad: boolean}) => {
             if (Typavköp === "Avgift") {
               return (
                 ettKvittoiListan(id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad)
@@ -171,7 +171,7 @@ export default function VisaKvitton({ data }) {
           alignSelf: "center",
           justifySelf: "center"
         }}>                    <h3 style={{ marginBottom: "0" }}>senaste kvitton:</h3>
-          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }) => {
+          {data.slice(0).reverse().map(({ id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad }: {id: Int8Array, Vara: string, Pris: Int8Array, Kategori: string, Datum: Date, Swish: Int8Array, Bild: string, Typavköp: string, Fixad: boolean}) => {
             return (
               ettKvittoiListan(id, Vara, Pris, Kategori, Datum, Swish, Bild, Typavköp, Fixad)
             )
