@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
-import BildOchTitel from "../../components/NfBild.tsx";
-import VisaKvitton from "../../islands/AdminKvitton.tsx";
+import BildOchTitel from "../components/NfBild.tsx";
+import VisaKvitton from "../islands/AdminKvitton.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 const urls = "https://fwikjqgmaisqizeqbaji.supabase.co";
 const keys =
@@ -19,7 +19,7 @@ interface User {
 
 export const handler: Handlers<User | null> = {
     async GET(_, ctx) {
-        const supabase = createClient(urls, keys);
+        const supabase = createClient(urls, keys,{});
         const { data, error } = await supabase
         .from('kvitton')
         .select()
