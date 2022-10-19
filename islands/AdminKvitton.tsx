@@ -9,7 +9,7 @@ export default function VisaKvitton({ data }) {
   }
 
   data.sort(comp)
-
+  console.log(data)
   if (visa === "intefixade") {
     return (
       <>
