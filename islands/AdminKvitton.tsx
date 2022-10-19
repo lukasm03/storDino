@@ -1,6 +1,8 @@
 import { useState } from "preact/hooks";
 import ettKvittoiListan from "../components/Kvitto.tsx";
 
+
+
 export default function VisaKvitton({ data }) {
   const [visa, setVisa] = useState("intefixade")
 
