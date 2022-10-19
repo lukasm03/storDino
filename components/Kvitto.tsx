@@ -1,4 +1,4 @@
-export default function ettKvittoiListan(id: Int8Array, Vara: string, Pris: Int8Array, Kategori: string, Datum: Date, Swish: Int8Array, Bild: string, Typavköp: string, Fixad: boolean) {
+export default function ettKvittoiListan(id: number, Vara: string, Pris: number, Kategori: string, Datum: string, Swish: number, Bild: string, Typavköp: string, Fixad: boolean) {
     return (<div style={{display:"grid",gridTemplateColumns:"repeat(1, 1fr)",gridTemplateRows:"repeat(4, 1fr)",gridColumnGap:"0px",gridRowGap:"0px",paddingBottom:"1rem",paddingTop:"0.5rem"}} key={Vara}>
         <div style={{    gridArea: "1 / 1 / 6 / 2", 
     alignSelf: "center", 

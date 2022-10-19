@@ -2,30 +2,32 @@ import { Head } from "$fresh/runtime.ts";
 import BildOchTitel from "../components/NfBild.tsx";
 import VisaKvitton from "../islands/AdminKvitton.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-const urls = "https://fwikjqgmaisqizeqbaji.supabase.co";
-const keys =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3aWtqcWdtYWlzcWl6ZXFiYWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjYwMjkxMjIsImV4cCI6MTk4MTYwNTEyMn0.v0LCLpTObviIdT8vEMfxfTOjQeZOaaaC7MMXdR7ib_o";
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
-interface User {
-    Vara: string;
-    Pris: Int8Array;
-    Kategori: string;
-    Datum: Date;
-    Bild: string;
-    Swish: Int8Array;
-    Typavköp: string; 
-    Fixad: boolean;
-  }
 
-export const handler: Handlers<User | null> = {
-    async GET(_, ctx) {
-        const supabase = createClient(urls, keys,{});
-        const { data, error } = await supabase
-        .from('kvitton')
-        .select()
-      return ctx.render(data);
-    },
-  };
+
+const data = [
+  {
+    id: 4,
+    Vara: "Lukas Hösttermin",
+    Pris: 80,
+    Kategori: "Medlemsavgifter",
+    Datum: "2022-10-13",
+    Bild: "https://fwikjqgmaisqizeqbaji.supabase.co/storage/v1/object/public/bildavkvitton/public/CA8C8B25-9FDC-42C4-9CB4-4BCAC85199EF.jpeg",
+    Swish: 727043013,
+    "Typavköp": "Intäkt",
+    Fixad: false
+  },
+  {
+    id: 5,
+    Vara: "Trasig Poster",
+    Pris: 69,
+    Kategori: "Övrigt",
+    Datum: "2022-10-03",
+    Bild: "https://fwikjqgmaisqizeqbaji.supabase.co/storage/v1/object/public/bildavkvitton/public/A48F576D-E2AC-4053-A80B-B1395B293F4D_1_102_o.jpeg",
+    Swish: 727043013,
+    "Typavköp": "Avgift",
+    Fixad: false
+  }
+]
 
 export default function Home({ data }: PageProps<User | null>) {
   return (
