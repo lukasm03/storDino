@@ -1,13 +1,17 @@
 import { Head } from "$fresh/runtime.ts";
-import Startsida from "../islands/Counter.tsx";
+import FormOchSkicka from "../islands/FormSkicka.tsx";
+import BildOchTitel from "../islands/NFBild.tsx";
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Start Sida</title>
+        <title>NF Kvitton</title>
       </Head>
-        <Startsida/>
+      <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+        <BildOchTitel />
+        <FormOchSkicka />
+      </div>
     </>
   );
 }
