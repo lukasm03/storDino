@@ -25,6 +25,9 @@ export const handler: Handlers<User[] | null> = {
         const { data, error } = await supabase
         .from('kvitton')
         .select()
+      console.log("Väntar på data")
+      console.log(await data)
+      console.log(await error)
       return ctx.render(await data);
     },
   };
