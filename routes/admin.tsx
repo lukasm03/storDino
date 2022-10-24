@@ -5,9 +5,8 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 const urls = "https://fwikjqgmaisqizeqbaji.supabase.co";
 const keys =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3aWtqcWdtYWlzcWl6ZXFiYWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjYwMjkxMjIsImV4cCI6MTk4MTYwNTEyMn0.v0LCLpTObviIdT8vEMfxfTOjQeZOaaaC7MMXdR7ib_o";
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
-import { useReducer } from "https://esm.sh/v95/preact@10.11.0/hooks/src/index.d.ts";
-interface User {
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@1.35.6"
+  interface User {
     id: number,
     Vara: string;
     Pris: number;
@@ -21,13 +20,13 @@ interface User {
 
 export const handler: Handlers<User[] | null> = {
    async GET(_, ctx) {
-      const supabase = createClient(urls, keys,{});
+      const supabase = createClient(urls, keys);
         const { data, error } = await supabase
         .from('kvitton')
         .select()
       console.log("Väntar på data")
-      console.log(await data)
-      console.log(await error)
+      console.log("data message", await data)
+      console.log("error message", await error)
       return ctx.render(await data);
     },
   };
