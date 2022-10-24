@@ -22,7 +22,7 @@ export const handler: Handlers<User[] | null> = {
    async GET(_, ctx) {
       const supabase = createClient(urls, keys);
         const { data, error } = await supabase
-        .from('kvitton')
+        .from('nfkvitton')
         .select()
       console.log("error message:", await error)
       return ctx.render(await data);
