@@ -6,11 +6,7 @@ import ettKvittoiListan from "../components/Kvitto.tsx";
 export default function VisaKvitton({ data }) {
   const [visa, setVisa] = useState("intefixade")
 
-  function comp(a: { datum: string | number | Date; }, b: { datum: string | number | Date; }) {
-    return new Date(a.datum).getTime() - new Date(b.datum).getTime();
-  }
 
-  data.sort(comp)
   if (visa === "intefixade") {
     return (
       <>
