@@ -4,7 +4,7 @@ export default function EttKvittoIlistan({Vara, Pris, Kategori, Datum, Swish, Bi
 alignSelf: "center", 
 marginRight: "1rem", 
 justifyContent: "center", height: "80px", width: "80px"}}>
-        <a href={'/admin/' + Vara}><img src={Bild} alt={"bild på kvittot"} height={80} width={80}/></a>
+        <a href={'/admin/' + encodeURIComponent(Vara)}><img src={Bild} alt={"bild på kvittot"} height={80} width={80} loading={"lazy"}/></a>
     </div>
     <div style={{gridArea: "1 / 2 / 2 / 3", 
 alignSelf: "center", 

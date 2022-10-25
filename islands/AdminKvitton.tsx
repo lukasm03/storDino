@@ -3,8 +3,14 @@ import EttKvittoIListan from "../components/Kvitto.tsx";
 
 
 export default function VisaKvitton({ data }) {
+  data.sort(comp)
   const [visa, setVisa] = useState("")
   const [info, setInfo] = useState(data)
+
+  function comp(a: { Datum: string | number | Date; }, b: { Datum: string | number | Date; }) {
+    return new Date(a.Datum).getTime() - new Date(b.Datum).getTime();
+  }
+
 
   useEffect(() => {
     if (visa == "alla"){
@@ -16,12 +22,12 @@ export default function VisaKvitton({ data }) {
       setInfo(newArray)
     }else if(visa == "intäkt"){
       const newArray = data.filter(function (el: { Typavköp: string; }) {
-        return el.Typavköp == "Intäkt";
+        return el.Typavköp == "intäkt";
       });
       setInfo(newArray)
     }else if(visa == "avgift"){
       const newArray = data.filter(function (el: { Typavköp: string; }) {
-        return el.Typavköp == "Avgift";
+        return el.Typavköp == "avgift";
       });
       setInfo(newArray)
     }

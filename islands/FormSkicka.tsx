@@ -14,7 +14,7 @@ export default function FormOchSkicka() {
   const [Swish, setSwish] = useState("");
   const [Bild, setBild] = useState<File>();
   const [Skickat, setSkickat] = useState("");
-  const [Typavköp, setTypavköp] = useState("Avgift");
+  const [Typavköp, setTypavköp] = useState("avgift");
 
   function onFileSelected(e: Event) {
     if (e.target instanceof HTMLInputElement) {
@@ -67,14 +67,14 @@ export default function FormOchSkicka() {
         <button
           name="typavkop"
           value="avgift"
-          onClick={() => setTypavköp("Avgift")}
+          onClick={() => setTypavköp("avgift")}
         >
           Avgifter
         </button>
         <button
           name="typavkop"
           value="intäkt"
-          onClick={() => setTypavköp("Intäkt")}
+          onClick={() => setTypavköp("intäkt")}
         >
           Intäkter
         </button>
