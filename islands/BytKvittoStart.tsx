@@ -101,14 +101,6 @@ export default function BytKvittoStart({ data }) {
         </a>
         <button onClick={() => setBytKvitto(false)}>sluta ändra kvitto</button>
         <button onClick={() => taBortKvitto()}>ta bort kvitto</button>
-        <button
-          onClick={() =>
-            fetch(`/admin/${data.Vara}`, {
-              method: "POST",  redirect: 'follow'
-            })}
-        >
-          testa routing
-        </button>
         <form onSubmit={hanteraSubmit} onChange={hanteraNytt}>
           <h3>
             vara: <input type="text" id="Vara" defaultValue={bytData.Vara} />

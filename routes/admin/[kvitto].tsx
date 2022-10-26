@@ -20,8 +20,10 @@ export const handler: Handlers = {
      return ctx.render(await data![0]);
    },
    POST(_,){
-    return Response.redirect("https://stackoverflow.com/questions/46379000/server-responds-with-405-error-even-with-access-control-allow-origin", 307)
-   }
+    return new Response("", {
+      status: 303,
+      headers: { Location: "/admin" },
+    });   }
  };
 
 export default function GreetPage( {data}: PageProps ) {
