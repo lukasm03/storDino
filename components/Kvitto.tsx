@@ -4,7 +4,7 @@ export default function EttKvittoIlistan({Vara, Pris, Kategori, Datum, Swish, Bi
 alignSelf: "center", 
 marginRight: "1rem", 
 justifyContent: "center", height: "80px", width: "80px"}}>
-        <a href={'/admin/' + encodeURIComponent(Vara)}><img src={Bild} alt={"bild på kvittot"} height={80} width={80} loading={"lazy"}/></a>
+        <a href={'/admin/' + encodeURIComponent(Vara)}><img src={Bild} alt={`bild på kvittot från köp av ${Vara}`} height={80} width={80} loading={"lazy"}/></a>
     </div>
     <div style={{gridArea: "1 / 2 / 2 / 3", 
 alignSelf: "center", 
@@ -28,7 +28,7 @@ justifyContent: "center"}}><p style={{height: "fit-content", margin: 0}}>Datum {
     </div>
     <div style={{ gridArea: "5 / 2 / 6 / 3", 
 alignSelf: "center", 
-justifyContent: "center"}}><p style={{height: "fit-content", margin: 0}}>Swishnummer: {Swish}</p>
+justifyContent: "center"}}><p style={{height: "fit-content", margin: 0}}>Swishnummer: {0+Swish.toString()}</p>
     </div>
 </div>
     )

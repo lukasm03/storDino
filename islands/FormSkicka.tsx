@@ -32,7 +32,7 @@ export default function FormOchSkicka() {
         upsert: true,
       });
     const { error } = await supabase
-      .from("kvitton")
+      .from("nfkvitton")
       .insert({
         Vara: Vara,
         Pris: Pris,

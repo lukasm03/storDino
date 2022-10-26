@@ -7,6 +7,8 @@ const urls = "https://fwikjqgmaisqizeqbaji.supabase.co";
 const keys =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3aWtqcWdtYWlzcWl6ZXFiYWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjYwMjkxMjIsImV4cCI6MTk4MTYwNTEyMn0.v0LCLpTObviIdT8vEMfxfTOjQeZOaaaC7MMXdR7ib_o";
 
+
+
 export const handler: Handlers = {
   async GET(_, ctx) {
     console.log(ctx.params)
@@ -17,6 +19,9 @@ export const handler: Handlers = {
      .eq("Vara", decodeURIComponent(ctx.params.kvitto))
      return ctx.render(await data![0]);
    },
+   POST(_,){
+    return Response.redirect("/admin", 307)
+   }
  };
 
 export default function GreetPage( {data}: PageProps ) {

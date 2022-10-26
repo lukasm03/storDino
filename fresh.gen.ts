@@ -6,6 +6,7 @@ import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/admin/[kvitto].tsx";
 import * as $1 from "./routes/admin/index.tsx";
 import * as $2 from "./routes/index.tsx";
+import * as $3 from "./routes/sidbyte.ts";
 import * as $$0 from "./islands/AdminKvitton.tsx";
 import * as $$1 from "./islands/BytKvittoStart.tsx";
 import * as $$2 from "./islands/FormSkicka.tsx";
@@ -15,6 +16,7 @@ const manifest = {
     "./routes/admin/[kvitto].tsx": $0,
     "./routes/admin/index.tsx": $1,
     "./routes/index.tsx": $2,
+    "./routes/sidbyte.ts": $3,
   },
   islands: {
     "./islands/AdminKvitton.tsx": $$0,
