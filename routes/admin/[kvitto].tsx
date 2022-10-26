@@ -20,7 +20,7 @@ export const handler: Handlers = {
      return ctx.render(await data![0]);
    },
    POST(_,){
-    return Response.redirect("/admin", 307)
+    return Response.redirect("https://stackoverflow.com/questions/46379000/server-responds-with-405-error-even-with-access-control-allow-origin", 307)
    }
  };
 
